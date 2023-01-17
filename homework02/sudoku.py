@@ -116,9 +116,8 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
         x += 1
         for j in i:
             y += 1
-            if j == ".":
+            if j == '.':
                 return x, y
-    return x, y
 
 
 def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.Set[str]:
@@ -132,7 +131,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    numbers = set("123456789")
+    numbers = set('123456789')
     string = set(get_row(grid, pos))
     column = set(get_col(grid, pos))
     block = set(get_block(grid, pos))
@@ -166,21 +165,17 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
             if res:
                 return res
             grid[pos[0]][pos[1]] = "."
-    return res
 
 
-def check_solution(solution):
+def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     """Если решение solution верно, то вернуть True, в противном случае False"""
     # TODO: Add doctests with bad puzzles
     arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     for i in range(0, len(solution)):
         for j in range(0, len(solution)):
             pos = i, j
-            if not (
-                arr == sorted(get_row(solution, pos))
-                and arr == sorted(get_col(solution, pos))
-                and arr == sorted(get_block(solution, pos))
-            ):
+            if not (arr == sorted(get_row(solution, pos)) and arr == sorted(get_col(solution, pos)) and arr == sorted(
+                    get_block(solution, pos))):
                 return False
     return True
 
