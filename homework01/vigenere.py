@@ -14,13 +14,13 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
         symbol = plaintext[i]
         if symbol.isalpha():
             if symbol.isupper():
-                shift = ord(keyword[i % len(keyword)]) - ord('A')
-                code_of_symbol = ord(symbol) - ord('A')
-                ciphertext += chr((code_of_symbol + shift) % 26 + ord('A'))
+                shift = ord(keyword[i % len(keyword)]) - ord("A")
+                code_of_symbol = ord(symbol) - ord("A")
+                ciphertext += chr((code_of_symbol + shift) % 26 + ord("A"))
             else:
-                shift = ord(keyword[i % len(keyword)]) - ord('a')
-                code_of_symbol = ord(symbol) - ord('a')
-                ciphertext += chr((code_of_symbol + shift) % 26 + ord('a'))
+                shift = ord(keyword[i % len(keyword)]) - ord("a")
+                code_of_symbol = ord(symbol) - ord("a")
+                ciphertext += chr((code_of_symbol + shift) % 26 + ord("a"))
         else:
             ciphertext += symbol
     return ciphertext
@@ -42,13 +42,13 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
         symbol = ciphertext[i]
         if symbol.isalpha():
             if symbol.isupper():
-                shift = ord(keyword[i % len(keyword)]) - ord('A')
-                code_of_symbol = 25 - ord(symbol) + ord('A')
-                plaintext += chr(25 - (code_of_symbol + shift) % 26 + ord('A'))
+                shift = ord(keyword[i % len(keyword)]) - ord("A")
+                code_of_symbol = 25 - ord(symbol) + ord("A")
+                plaintext += chr(25 - (code_of_symbol + shift) % 26 + ord("A"))
             else:
-                shift = ord(keyword[i % len(keyword)]) - ord('a')
-                code_of_symbol = 25 - ord(symbol) + ord('a')
-                plaintext += chr(25 - (code_of_symbol + shift) % 26 + ord('a'))
+                shift = ord(keyword[i % len(keyword)]) - ord("a")
+                code_of_symbol = 25 - ord(symbol) + ord("a")
+                plaintext += chr(25 - (code_of_symbol + shift) % 26 + ord("a"))
         else:
             plaintext += symbol
     return plaintext
