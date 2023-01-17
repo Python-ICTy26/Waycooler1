@@ -63,9 +63,7 @@ class GUI(UI):
         pause = False
         while running:
             for event in pygame.event.get():
-                if event.type == QUIT:
-                    running = False
-                elif event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         pause = not pause
                 elif event.type == pygame.MOUSEBUTTONDOWN:
