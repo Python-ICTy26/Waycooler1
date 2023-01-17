@@ -1,6 +1,6 @@
 import pathlib
-import typing as tp
 import random
+import typing as tp
 
 Cell = tp.Tuple[int, int]
 Cells = tp.List[int]
