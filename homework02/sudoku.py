@@ -6,7 +6,7 @@ T = tp.TypeVar("T")
 
 
 def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
-    """ Прочитать Судоку из указанного файла """
+    """Прочитать Судоку из указанного файла"""
     path = pathlib.Path(path)
     with path.open() as f:
         puzzle = f.read()
@@ -20,7 +20,7 @@ def create_grid(puzzle: str) -> tp.List[tp.List[str]]:
 
 
 def display(grid: tp.List[tp.List[str]]) -> None:
-    """Вывод Судоку """
+    """Вывод Судоку"""
     width = 2
     line = "+".join(["-" * (width * 3)] * 3)
     for row in range(9):
@@ -116,7 +116,7 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
         x += 1
         for j in i:
             y += 1
-            if j == '.':
+            if j == ".":
                 return x, y
 
 
@@ -131,7 +131,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    numbers = set('123456789')
+    numbers = set("123456789")
     string = set(get_row(grid, pos))
     column = set(get_col(grid, pos))
     block = set(get_block(grid, pos))
@@ -164,18 +164,21 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
             res = solve(grid)
             if res:
                 return res
-            grid[pos[0]][pos[1]] = '.'
+            grid[pos[0]][pos[1]] = "."
 
 
 def check_solution(solution: tp.List[tp.List[str]]) -> bool:
-    """ Если решение solution верно, то вернуть True, в противном случае False """
+    """Если решение solution верно, то вернуть True, в противном случае False"""
     # TODO: Add doctests with bad puzzles
-    arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     for i in range(0, len(solution)):
         for j in range(0, len(solution)):
             pos = i, j
-            if not (arr == sorted(get_row(solution, pos)) and arr == sorted(get_col(solution, pos)) and arr == sorted(
-                    get_block(solution, pos))):
+            if not (
+                    arr == sorted(get_row(solution, pos))
+                    and arr == sorted(get_col(solution, pos))
+                    and arr == sorted(get_block(solution, pos))
+            ):
                 return False
     return True
 
@@ -202,13 +205,13 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     >>> check_solution(solution)
     True
     """
-    grid = [['.' for _ in range(9)] for _ in range(9)]
+    grid = [["." for _ in range(9)] for _ in range(9)]
     if N > 81:
         N = 81
     dots = random.sample([i for i in range(81)], 81 - N)
     solve(grid)
     for elem in dots:
-        grid[elem // 9][elem % 9] = '.'
+        grid[elem // 9][elem % 9] = "."
     return grid
 
 
@@ -222,7 +225,7 @@ if __name__ == "__main__":
         else:
             display(solution)
         if check_solution(solution):
-            print('Solution is correct')
+            print("Solution is correct")
         else:
-            print('Ooops')
+            print("Ooops")
     display(generate_sudoku(1))
