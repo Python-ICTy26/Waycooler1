@@ -23,13 +23,27 @@ class GUI(UI):
         for i in range(self.life.cols):
             for j in range(self.life.rows):
                 if self.life.curr_generation[i][j] == 0:
-                    pygame.draw.rect(self.screen, pygame.Color("white"),
-                                     (j * self.cell_size + 1, i * self.cell_size + 1, self.cell_size - 1,
-                                      self.cell_size - 1))
+                    pygame.draw.rect(
+                        self.screen,
+                        pygame.Color("white"),
+                        (
+                            j * self.cell_size + 1,
+                            i * self.cell_size + 1,
+                            self.cell_size - 1,
+                            self.cell_size - 1,
+                        ),
+                    )
                 else:
-                    pygame.draw.rect(self.screen, pygame.Color("green"),
-                                     (j * self.cell_size + 1, i * self.cell_size + 1, self.cell_size - 1,
-                                      self.cell_size - 1))
+                    pygame.draw.rect(
+                        self.screen,
+                        pygame.Color("green"),
+                        (
+                            j * self.cell_size + 1,
+                            i * self.cell_size + 1,
+                            self.cell_size - 1,
+                            self.cell_size - 1,
+                        ),
+                    )
 
     def edit_cell(self, x, y) -> None:
         row = y // self.cell_size
