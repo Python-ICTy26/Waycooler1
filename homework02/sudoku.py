@@ -118,6 +118,7 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
             y += 1
             if j == ".":
                 return x, y
+    return 0
 
 
 def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.Set[str]:
@@ -165,9 +166,10 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
             if res:
                 return res
             grid[pos[0]][pos[1]] = "."
+    return res
 
 
-def check_solution(solution: tp.List[tp.List[str]]) -> bool:
+def check_solution(solution):
     """Если решение solution верно, то вернуть True, в противном случае False"""
     # TODO: Add doctests with bad puzzles
     arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
