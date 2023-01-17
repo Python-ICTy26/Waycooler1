@@ -116,7 +116,7 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
         x += 1
         for j in i:
             y += 1
-            if j == '.':
+            if j == ".":
                 return x, y
 
 
@@ -131,7 +131,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    numbers = set('123456789')
+    numbers = set("123456789")
     string = set(get_row(grid, pos))
     column = set(get_col(grid, pos))
     block = set(get_block(grid, pos))
@@ -174,8 +174,11 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     for i in range(0, len(solution)):
         for j in range(0, len(solution)):
             pos = i, j
-            if not (arr == sorted(get_row(solution, pos)) and arr == sorted(get_col(solution, pos)) and arr == sorted(
-                    get_block(solution, pos))):
+            if not (
+                arr == sorted(get_row(solution, pos))
+                and arr == sorted(get_col(solution, pos))
+                and arr == sorted(get_block(solution, pos))
+            ):
                 return False
     return True
 
