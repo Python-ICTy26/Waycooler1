@@ -1,8 +1,8 @@
 import typing as tp
 
-import requests
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+import requests  # mypy: ignore-errors
+from requests.adapters import HTTPAdapter  # mypy: ignore-errors
+from requests.packages.urllib3.util.retry import Retry  # mypy: ignore-errors
 
 
 class Session:
