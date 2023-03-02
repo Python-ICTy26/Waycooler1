@@ -25,9 +25,9 @@ def age_predict(user_id: int) -> tp.Optional[float]:
             if len(date) != 3:
                 continue
             age = (
-                    -date[2]
-                    + year
-                    - (1 if (date[1] < month or (date[1] == month and day < date[0])) else 0)
+                -date[2]
+                + year
+                - (1 if (date[1] < month or (date[1] == month and day < date[0])) else 0)
             )
             ret.append(age)
     if not len(ret):
