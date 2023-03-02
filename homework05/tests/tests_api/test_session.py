@@ -3,7 +3,12 @@ import unittest
 
 import httpretty
 import responses
-from requests.exceptions import ConnectionError, HTTPError, ReadTimeout, RetryError  # mypy: ignore-errors
+from requests.exceptions import (  # mypy: ignore-errors
+    ConnectionError,
+    HTTPError,
+    ReadTimeout,
+    RetryError,
+)
 from vkapi.session import Session
 
 
