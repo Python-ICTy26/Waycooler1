@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
-from vkapi.friends import get_friends, get_mutual
+from homework05.vkapi.friends import get_friends, get_mutual
 
 
 def ego_network(
-    user_id: tp.Optional[int] = None, friends: tp.Optional[tp.List[int]] = None
+        user_id: tp.Optional[int] = None, friends: tp.Optional[tp.List[int]] = None
 ) -> tp.List[tp.Tuple[int, int]]:
     """
     Построить эгоцентричный граф друзей.
@@ -18,7 +18,13 @@ def ego_network(
     :param user_id: Идентификатор пользователя, для которого строится граф друзей.
     :param friends: Идентификаторы друзей, между которыми устанавливаются связи.
     """
-    pass
+    ret = []
+    mutual_friends = get_mutual(source_uid=user_id, target_uids=friends)
+    for person in mutual_friends:
+        if person is not None:
+            for i in person["common_friends"]:
+                ret.append((person["id"], i))
+    return ret
 
 
 def plot_ego_network(net: tp.List[tp.Tuple[int, int]]) -> None:
@@ -51,9 +57,9 @@ def get_communities(net: tp.List[tp.Tuple[int, int]]) -> tp.Dict[int, tp.List[in
 
 
 def describe_communities(
-    clusters: tp.Dict[int, tp.List[int]],
-    friends: tp.List[tp.Dict[str, tp.Any]],
-    fields: tp.Optional[tp.List[str]] = None,
+        clusters: tp.Dict[int, tp.List[int]],
+        friends: tp.List[tp.Dict[str, tp.Any]],
+        fields: tp.Optional[tp.List[str]] = None,
 ) -> pd.DataFrame:
     if fields is None:
         fields = ["first_name", "last_name"]

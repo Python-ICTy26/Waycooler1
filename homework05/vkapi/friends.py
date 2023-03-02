@@ -3,8 +3,8 @@ import math
 import time
 import typing as tp
 
-from vkapi import config, session
-from vkapi.exceptions import APIError
+from homework05.vkapi import config, session
+from homework05.vkapi.exceptions import APIError
 
 QueryParams = tp.Optional[tp.Dict[str, tp.Union[str, int]]]
 
@@ -16,7 +16,7 @@ class FriendsResponse:
 
 
 def get_friends(
-    user_id: int, count: int = 5000, offset: int = 0, fields: tp.Optional[tp.List[str]] = None
+        user_id: int, count: int = 5000, offset: int = 0, fields: tp.Optional[tp.List[str]] = None
 ) -> FriendsResponse:
     """
     Получить список идентификаторов друзей пользователя или расширенную информацию
@@ -28,7 +28,16 @@ def get_friends(
     :param fields: Список полей, которые нужно получить для каждого пользователя.
     :return: Список идентификаторов друзей пользователя или список пользователей.
     """
-    pass
+    list_of_friends = session.get(
+        "friends.get",
+        user_id=user_id,
+        count=count,
+        offset=offset,
+        fields=fields,
+        version=config.VK_CONFIG["version"],
+        access_token=config.VK_CONFIG,
+    ).json()["response"]
+    return FriendsResponse(count=list_of_friends["count"], items=list_of_friends["items"])
 
 
 class MutualFriends(tp.TypedDict):
@@ -38,13 +47,13 @@ class MutualFriends(tp.TypedDict):
 
 
 def get_mutual(
-    source_uid: tp.Optional[int] = None,
-    target_uid: tp.Optional[int] = None,
-    target_uids: tp.Optional[tp.List[int]] = None,
-    order: str = "",
-    count: tp.Optional[int] = None,
-    offset: int = 0,
-    progress=None,
+        source_uid: tp.Optional[int] = None,
+        target_uid: tp.Optional[int] = None,
+        target_uids: tp.Optional[tp.List[int]] = None,
+        order: str = "",
+        count: tp.Optional[int] = None,
+        offset: int = 0,
+        progress=None,
 ) -> tp.Union[tp.List[int], tp.List[MutualFriends]]:
     """
     Получить список идентификаторов общих друзей между парой пользователей.
@@ -57,4 +66,24 @@ def get_mutual(
     :param offset: Смещение, необходимое для выборки определенного подмножества общих друзей.
     :param progress: Callback для отображения прогресса.
     """
-    pass
+    ret = []
+    ln = 1
+    if target_uids is not None:
+        ln = (int(len(target_uids)) + 99) // 100
+
+    for i in range(0, ln):
+        ret += session.get(
+            "friends.getMutual",
+            source_uid=source_uid,
+            target_uid=target_uid,
+            target_uids=target_uids,
+            order=order,
+            count=count,
+            offset=i * 100,
+            version=config.VK_CONFIG["version"],
+            access_token=config.VK_CONFIG["access_token"],
+        ).json()["response"]
+        if i % 3 == 2:
+            time.sleep(1)
+
+    return ret
