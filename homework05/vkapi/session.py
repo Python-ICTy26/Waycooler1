@@ -33,8 +33,7 @@ class Session:
             max_retries=retry_strategy
         )  # повторяет попытку соединения в случае неудачи
         self.current_session.mount(
-            base_url,
-            adapter=adapter
+            base_url, adapter=adapter
         )  # регистрируем экземпляр адаптера в префиксе
         self.base_url = base_url
         self.timeout = timeout
@@ -49,6 +48,4 @@ class Session:
     def post(
         self, url: str, *args: tp.Any, **kwargs: tp.Any
     ) -> requests.Response:  # передача пользовательских данных заданному ресурсу
-        return self.current_session.post(
-            self.base_url + "/" + url, data=kwargs
-        )
+        return self.current_session.post(self.base_url + "/" + url, data=kwargs)
