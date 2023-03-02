@@ -21,8 +21,8 @@ def ego_network(
     mutual_friends = get_mutual(source_uid=user_id, target_uids=friends)
     for person in mutual_friends:
         if person is not None:
-            for i in person["common_friends"]:
-                ret.append((person["id"], i))
+            for j in person["common_friends"]:  # type: ignore
+                ret.append((person["id"], j))  # type: ignore
     return ret
 
 

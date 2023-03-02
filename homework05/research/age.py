@@ -20,8 +20,8 @@ def age_predict(user_id: int) -> tp.Optional[float]:
     month = dt.datetime.now().month
     day = dt.datetime.now().day
     for i in list_friends.items:
-        if "bdate" in i:
-            date = list(map(int, i["bdate"].split(".")))
+        if "bdate" in i:  # type: ignore
+            date = list(map(int, i["bdate"].split(".")))  # type: ignore
             if len(date) != 3:
                 continue
             age = (
