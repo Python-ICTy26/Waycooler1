@@ -18,12 +18,12 @@ def write_tree(gitdir: pathlib.Path, index: tp.List[GitIndexEntry], dirname: str
             directory = file.name[:s].encode()
             mode = oct(file.mode)[2:].encode()
             child = (
-                    b""
-                    + mode
-                    + b" "
-                    + file.name[file.name.find("/") + 1:].encode()
-                    + b"\0"
-                    + file.sha1
+                b""
+                + mode
+                + b" "
+                + file.name[file.name.find("/") + 1:].encode()
+                + b"\0"
+                + file.sha1
             )
             hash = bytes.fromhex(hash_object(child, "tree", True))
             data += b"40000 " + directory + b"\0" + hash
@@ -34,11 +34,11 @@ def write_tree(gitdir: pathlib.Path, index: tp.List[GitIndexEntry], dirname: str
 
 
 def commit_tree(
-        gitdir: pathlib.Path,
-        tree: str,
-        message: str,
-        parent: tp.Optional[str] = None,
-        author: tp.Optional[str] = None,
+    gitdir: pathlib.Path,
+    tree: str,
+    message: str,
+    parent: tp.Optional[str] = None,
+    author: tp.Optional[str] = None,
 ) -> str:
     zone = time.timezone
     offset = "+" if zone < 0 else "-"

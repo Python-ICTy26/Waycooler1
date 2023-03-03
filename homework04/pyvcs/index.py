@@ -51,7 +51,7 @@ class GitIndexEntry(tp.NamedTuple):
         )
         sha1 = data[40:60]
         flags = struct.unpack(">H", data[60:62])[0]
-        name = data[62: data[62:].index(b"\x00\x00\x00") + 62].decode("ascii")
+        name = data[62 : data[62:].index(b"\x00\x00\x00") + 62].decode("ascii")
 
         return GitIndexEntry(
             ctime_s, ctime_n, mtime_s, mtime_n, dev, ino, mode, uid, gid, size, sha1, flags, name
