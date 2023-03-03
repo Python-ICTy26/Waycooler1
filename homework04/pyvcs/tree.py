@@ -21,7 +21,7 @@ def write_tree(gitdir: pathlib.Path, index: tp.List[GitIndexEntry], dirname: str
                 b""
                 + mode
                 + b" "
-                + file.name[file.name.find("/") + 1:].encode()
+                + file.name[file.name.find("/") + 1 :].encode()
                 + b"\0"
                 + file.sha1
             )
