@@ -10,14 +10,14 @@ from pyvcs.tree import commit_tree, write_tree
 
 def add(gitdir: pathlib.Path, paths: tp.List[pathlib.Path]) -> None:
     # PUT YOUR CODE HERE
-    ...
+    return {}
 
 
 def commit(gitdir: pathlib.Path, message: str, author: tp.Optional[str] = None) -> str:
     # PUT YOUR CODE HERE
-    ...
+    return {}
 
 
 def checkout(gitdir: pathlib.Path, obj_name: str) -> None:
     # PUT YOUR CODE HERE
-    ...
+    return {}

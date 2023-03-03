@@ -11,7 +11,7 @@ from pyvcs.refs import get_ref, is_detached, resolve_head, update_ref
 
 def write_tree(gitdir: pathlib.Path, index: tp.List[GitIndexEntry], dirname: str = "") -> str:
     # PUT YOUR CODE HERE
-    ...
+    return {}
 
 
 def commit_tree(
@@ -22,4 +22,4 @@ def commit_tree(
     author: tp.Optional[str] = None,
 ) -> str:
     # PUT YOUR CODE HERE
-    ...
+    return {}
