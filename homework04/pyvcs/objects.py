@@ -12,39 +12,39 @@ from pyvcs.repo import repo_find
 
 def hash_object(data: bytes, fmt: str, write: bool = False) -> str:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def resolve_object(obj_name: str, gitdir: pathlib.Path) -> tp.List[str]:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def find_object(obj_name: str, gitdir: pathlib.Path) -> str:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def read_object(sha: str, gitdir: pathlib.Path) -> tp.Tuple[str, bytes]:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def read_tree(data: bytes) -> tp.List[tp.Tuple[int, str, str]]:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def cat_file(obj_name: str, pretty: bool = True) -> None:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def find_tree_files(tree_sha: str, gitdir: pathlib.Path) -> tp.List[tp.Tuple[str, str]]:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def commit_parse(raw: bytes, start: int = 0, dct=None):
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore

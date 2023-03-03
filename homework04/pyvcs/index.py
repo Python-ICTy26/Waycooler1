@@ -26,29 +26,29 @@ class GitIndexEntry(tp.NamedTuple):
 
     def pack(self) -> bytes:
         # PUT YOUR CODE HERE
-        return {}
+        return {}  # type: ignore
 
     @staticmethod
     def unpack(data: bytes) -> "GitIndexEntry":
         # PUT YOUR CODE HERE
-        return {}
+        return {}  # type: ignore
 
 
 def read_index(gitdir: pathlib.Path) -> tp.List[GitIndexEntry]:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def write_index(gitdir: pathlib.Path, entries: tp.List[GitIndexEntry]) -> None:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def ls_files(gitdir: pathlib.Path, details: bool = False) -> None:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
 
 
 def update_index(gitdir: pathlib.Path, paths: tp.List[pathlib.Path], write: bool = True) -> None:
     # PUT YOUR CODE HERE
-    return {}
+    return {}  # type: ignore
