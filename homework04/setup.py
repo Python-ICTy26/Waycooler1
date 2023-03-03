@@ -1,6 +1,5 @@
-from setuptools import setup
-
 import pyvcs
+from setuptools import setup
 
 AUTHOR = "Dmitrii Sorokin"
 AUTHOR_EMAIL = "dementiy@yandex.ru"
@@ -17,5 +16,4 @@ setup(
     url=HOME_PAGE,
     license="GPLv3",
     python_requires=">=3.6.0",
-
 )
