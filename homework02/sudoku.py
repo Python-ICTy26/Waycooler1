@@ -164,7 +164,7 @@ def solve(grid: tp.List[tp.List[str]]):
             res = solve(grid)
             if res:
                 return res
-            grid[pos[0]][pos[1]] = "."
+        grid[pos[0]][pos[1]] = "."
 
 
 def check_solution(solution: tp.List[tp.List[str]]) -> bool:
