@@ -161,7 +161,9 @@ def solve(grid: tp.List[tp.List[str]]):
         possible_values = find_possible_values(grid, pos)
         for number in possible_values:
             grid[pos[0]][pos[1]] = number
-            solve(grid)
+            res = solve(grid)
+            if res:
+                return res
             grid[pos[0]][pos[1]] = "."
 
 
