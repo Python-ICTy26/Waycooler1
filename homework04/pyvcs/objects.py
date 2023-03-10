@@ -28,8 +28,11 @@ def resolve_object(obj_name: str, gitdir: pathlib.Path) -> tp.List[str]:
     if not 4 <= len(obj_name) <= 40:
         raise ValueError(f"Not a valid object name {obj_name}")
     objects_path = gitdir / "objects" / obj_name[:2]
-    objects = [obj_name[:2] + obj_path.name for obj_path in objects_path.iterdir() if
-               obj_path.name.find(obj_name[2:]) != -1]
+    objects = [
+        obj_name[:2] + obj_path.name
+        for obj_path in objects_path.iterdir()
+        if obj_path.name.find(obj_name[2:]) != -1
+    ]
     if not objects:
         raise ValueError(f"Not a valid object name {obj_name}")
     return objects
@@ -64,7 +67,7 @@ def read_tree(data: bytes) -> tp.List[tp.Tuple[int, str, str]]:
         j = data.find(b"\x00", i)
         name = data[i:j].decode()
         i = j + 1
-        sha = bytes.hex(data[i:i + 20])
+        sha = bytes.hex(data[i : i + 20])
         i += 20
         result.append((mode, name, sha))
     return result
@@ -109,4 +112,4 @@ def find_tree_files(tree_sha: str, gitdir: pathlib.Path) -> tp.List[tp.Tuple[str
 def commit_parse(raw: bytes, start: int = 0, dct=None):
     data = zlib.decompress(raw)
     i = data.find(b"tree")
-    return data[i + 5: i + 45]
+    return data[i + 5 : i + 45]
