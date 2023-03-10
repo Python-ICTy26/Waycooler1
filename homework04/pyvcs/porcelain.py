@@ -36,6 +36,6 @@ def checkout(gitdir: pathlib.Path, obj_name: str) -> None:
             dir_name = name[: name.find("/")]
             if not pathlib.Path(dir_name).exists():
                 pathlib.Path(dir_name).absolute().mkdir()
-        with open(name, "w") as file:
+        with open(name, "w") as file_1:
             header, content = read_object(sha, gitdir)
-            file.write(content.decode())
+            file_1.write(str(content.decode()))
