@@ -32,15 +32,21 @@ def commit_tree(
     parent: tp.Optional[str] = None,
     author: tp.Optional[str] = None,
 ) -> str:
-    commit_time = int(time.mktime(time.localtime()))
-    zone = time.strftime("%z", time.localtime())
-    if parent:
-        parent = f"\nparent {parent}"
+    commit_message = f"tree {tree}\n"
+    if parent is not None:
+        commit_message += f"parent {parent}\n"
+    unix_timestamp = int(time.mktime(time.localtime()))
+    time_zone = time.timezone
+    if time_zone > 0:
+        author_time = f"{unix_timestamp} -0{time_zone // 3600}{(time_zone // 60) % 60}0"
     else:
-        parent = ""
-    content = (
-        f"tree {tree}"
-        + parent
-        + f"\nauthor {author} {commit_time} {zone}\ncommitter {author} {commit_time} {zone}\n\n{message}\n"
+        author_time = f"{unix_timestamp} +0{abs(time_zone) // 3600}{(abs(time_zone) // 60) % 60}0"
+    commit_message += "\n".join(
+        (
+            f"author {author} {author_time}",
+            f"committer {author} {author_time}",
+            f"\n{message}\n"
+        )
     )
-    return hash_object(content.encode(), "commit", write=True)
+    commit_hash = hash_object(commit_message.encode(), "commit", True)
+    return commit_hash
