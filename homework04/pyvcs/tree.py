@@ -42,11 +42,7 @@ def commit_tree(
     else:
         author_time = f"{unix_timestamp} +0{abs(time_zone) // 3600}{(abs(time_zone) // 60) % 60}0"
     commit_message += "\n".join(
-        (
-            f"author {author} {author_time}",
-            f"committer {author} {author_time}",
-            f"\n{message}\n"
-        )
+        (f"author {author} {author_time}", f"committer {author} {author_time}", f"\n{message}\n")
     )
     commit_hash = hash_object(commit_message.encode(), "commit", True)
     return commit_hash
